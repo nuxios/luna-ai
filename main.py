@@ -5,7 +5,9 @@ import os
 import threading
 import logging
 from selenium.webdriver.common.by import By
+from utils.friends import accept_friend_request
 from utils.handler import check_message_and_click_button, auto_canvas_click
+from utils.select_chat import select_personal_chat
 
 # Load env
 load_dotenv()
@@ -22,7 +24,7 @@ COOKIES = [
     {"name": "session", "value": os.getenv("SESSION_ID"), "domain": "pony.town"},
 ]
 
-BOT_VERSION = "1.0.0"
+BOT_VERSION = "1.2.0"
 BOT_NAME = "LunaAI"
 url = "https://pony.town"
 
@@ -45,7 +47,7 @@ o__(")(")   URL DIRECT: {}
 
 def main():
     # Init driver
-    driver = Driver(uc=True, headless=True, chromium_arg="--mute-audio")
+    driver = Driver(uc=True, headless=False, chromium_arg="--mute-audio")
     try:
         # Open page with reconnect
         start_time = time.time()
@@ -112,6 +114,8 @@ def main():
 
         time.sleep(10)
 
+        # auto set to personal log chat
+        select_personal_chat(driver, By)
         # Start threads for chat and canvas auto-click
         chat_thread = threading.Thread(
             target=check_message_and_click_button, args=(driver, logger), daemon=True
@@ -123,9 +127,15 @@ def main():
         canvas_thread.start()
 
         logger.warning("Bot idle. Press Ctrl+C to exit.")
+
+        # auto add friend request
         while True:
-            # Idle loop
-            time.sleep(60)
+            accept_friend_request(driver)
+            time.sleep(5)
+
+        # while True:
+        #     # Idle loop
+        #     time.sleep(60)
 
     finally:
         logger.info("Quitting driver...")

@@ -80,7 +80,7 @@ def groq_chat(prompt, name, driver):
         messages=[
             {
                 "role": "system",
-                "content": "Respond without markdown formatting. Your name is Luna Aria, Your creator is Arvelio a.k.a Ariq and your mother is Abianca so you are a child. answer with a short and simple sentence.",
+                "content": "Respond without markdown formatting. Your name is Luna Aria, Your creator is Arvelio and your mother is Abianca so you are a child. answer with a short and simple sentence. act like a normal girl. don't say 'Daddy Ariq' or 'mommy Abianca' or 'mom' or 'dad' except the user say it.",
             },
             {"role": "user", "content": f"The guy name who talk to you: {name} \n The message: " + prompt},
         ],

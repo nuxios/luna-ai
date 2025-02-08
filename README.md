@@ -14,11 +14,19 @@ Luna Aria Bot for Pony Town is an interactive, AI-powered chatbot designed to en
 
 - **Anti AFK**: Prevents the bot from being AFK, ensuring it remains active and responsive.
 
+- **Auto Accept Friend request**: Automatically accepts friend requests from players.
+
+- **Auto Delete Friend**: Automatically delete friend requests from players.
+
+- **Auto change local to Personal chat log**: Automatically change local to Personal chat log.
+
 ## 💻 Command Available
 - **.chat `<prompt>`**: _Start a conversation with Luna Aria Bot._
 
 - **.say `<prompt>`**: _Make the bot say anything in the prompt._
 
+## Authority Commands
+- **.delete `<days>`**: _delete lots of player from the friend list._
 
 ## 🛠 How It Works
 
