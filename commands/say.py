@@ -11,7 +11,7 @@ def say_self(driver, cmd, arg):
             print("Toggle err:", e)
         time.sleep(0.5)  # Wait
         try:
-            driver.type('textarea[aria-label="Chat message"]', arg)  # Type msg
+            driver.type('textarea[aria-label="Chat message"]', arg)
         except Exception as e:
             print("Type err:", e)
         try:

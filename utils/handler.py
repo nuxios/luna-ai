@@ -13,7 +13,7 @@ def check_message_and_click_button(driver, logger):
     Listens for chat messages and processes commands starting with '.'
     """
     global last_command_time
-    last_msg = None  # Track last message
+    last_msg = None
 
     while True:
         try:
@@ -29,12 +29,12 @@ def check_message_and_click_button(driver, logger):
                 if msg and msg != last_msg:
                     logger.info(f"💬 Msg from {nick}: {msg}")
 
-                    if msg.startswith("."):  # Check if message is a command
-                        last_command_time = time.time()  # Reset AFK Timer
+                    if msg.startswith("."):
+                        last_command_time = time.time()
 
                         # Parse command
                         parts = msg[1:].split(" ")
-                        cmd = parts[0]  # Extract command keyword
+                        cmd = parts[0]
                         arg = " ".join(parts[1:]) if len(parts) > 1 else ""
                         emote = msg[3:] if msg.startswith(".e") else None
 
@@ -45,9 +45,9 @@ def check_message_and_click_button(driver, logger):
                         emote_play(driver, emote)
                         ai_handler(driver, cmd, arg, nick)
 
-                    last_msg = msg  # Save last processed message
+                    last_msg = msg 
 
-            time.sleep(1)  # Prevent excessive looping
+            time.sleep(1)
 
         except KeyboardInterrupt:
             print("🛑 Bot stopped.")
@@ -65,16 +65,18 @@ def auto_canvas_click(driver):
     global last_command_time
     while True:
         try:
-            if time.time() - last_command_time >= 240:  # 4 min inactivity
+            # 4 min inactivity
+            if time.time() - last_command_time >= 240:  
                 try:
                     canvas = driver.find_element(By.TAG_NAME, "canvas")
                     canvas.click()
                     print("🎮 Anti-AFK: Canvas clicked.")
                 except Exception as ce:
                     print("⚠️ Canvas click error:", ce)
-
-                last_command_time = time.time()  # Reset timer
-            time.sleep(10)  # Check every 10 sec
+                    
+                # Reset timer
+                last_command_time = time.time()  
+            time.sleep(10)
         except KeyboardInterrupt:
             break
         except Exception as e:

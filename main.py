@@ -47,7 +47,7 @@ o__(")(")   URL DIRECT: {}
 
 def main():
     # Init driver
-    driver = Driver(uc=True, headless=False, chromium_arg="--mute-audio")
+    driver = Driver(uc=True, headless=True, chromium_arg="--mute-audio")
     try:
         # Open page with reconnect
         start_time = time.time()
@@ -71,7 +71,7 @@ def main():
             logger.info("Bypass successful!")
 
         # Tab fix
-        handles = driver.window_handles  # Get tabs
+        handles = driver.window_handles
         target = None  # Target tab
         for handle in handles:
             driver.switch_to.window(handle)
@@ -128,7 +128,7 @@ def main():
 
         logger.warning("Bot idle. Press Ctrl+C to exit.")
 
-        # auto add friend request
+        # auto add friend request & loop idle
         while True:
             accept_friend_request(driver)
             time.sleep(5)

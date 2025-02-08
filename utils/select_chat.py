@@ -13,7 +13,7 @@ def select_personal_chat(driver, By):
                     if tab.text.strip().lower() == "personal":
                         print("Switching to Personal chat...")
                         tab.click()
-                        time.sleep(1)  # Small delay to ensure it's selected
+                        time.sleep(1)
                         break
             except Exception as e:
                 print("Error selecting Personal chat:", e)
